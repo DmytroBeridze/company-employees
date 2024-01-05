@@ -1,0 +1,31 @@
+.fa-stroopwafel {
+  color: rgb(183, 138, 71);
+  font-size: 20px;
+}
+.fa-trash {
+  color: rgb(198, 68, 17);
+  font-size: 20px;
+}
+
+.fa-star {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: rgb(239, 191, 15);
+  font-size: 20px;
+}
+.list-group-item {
+  padding: 20px 30px;
+}
+.list-group-item-label {
+  min-width: 550px;
+  font-size: 20px;
+}
+.list-group-item input {
+  border: none;
+  font-size: 20px;
+}
+.list-group-item.ingrease .list-group-item-label,
+.list-group-item.ingrease .list-group-item-input {
+  color: rgb(183, 138, 71);
+}
