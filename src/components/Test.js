@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export default function Test() {
   return (
@@ -83,6 +84,11 @@ function SelfTrain() {
   );
 }
 
+const SpanStyled = styled.span`
+  width: 60px;
+  color: brown;
+`;
+
 class SefElement extends React.Component {
   constructor(props) {
     super(props);
@@ -120,10 +126,14 @@ class SefElement extends React.Component {
     const { myAge, profession } = this.state;
     return (
       <>
-        <div className="firstSome">
+        <SpanStyled>
           Cat Name: {myName} Cat, Lastname: {myLastname}, Profession:{" "}
           {profession}
-        </div>
+        </SpanStyled>
+        {/* <div className="firstSome">
+          Cat Name: {myName} Cat, Lastname: {myLastname}, Profession:{" "}
+          {profession}
+        </div> */}
         <div className="myAge">Age: {this.state.myAge}</div>
         <button
           style={{ marginTop: "20px", padding: "10px 20px" }}
@@ -169,7 +179,27 @@ class SefElement extends React.Component {
 }
 
 export { SelfTrain };
-// --------------
+
+// -----styled components train---------
+
+const Submit = styled.input`
+  padding: 10px;
+  color: blue;
+  border-radius: 5px;
+  margin: 20px;
+`;
+const FormTitle = styled.h2`
+  font-size: 20px;
+  color: ${(props) => (props.active ? "green" : "yellow")};
+  margin-top: 20px;
+`;
+
+export const TestButton = styled.button`
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid green;
+  padding: 10px;
+`;
 
 class FormTrain extends React.Component {
   constructor(props) {
@@ -179,6 +209,8 @@ class FormTrain extends React.Component {
       cl: "",
     };
   }
+
+  static testValue = 10;
 
   handleChange = (e) => {
     const name = e.target.name;
@@ -195,6 +227,7 @@ class FormTrain extends React.Component {
   render() {
     return (
       <>
+        <FormTitle active> Test styled-component title</FormTitle>
         <form onSubmit={this.handleSubmit}>
           <input
             type="checkbox"
@@ -208,8 +241,12 @@ class FormTrain extends React.Component {
             checked={this.state.cl}
             onChange={this.handleChange}
           />
-          <input type="submit" value={"Submit"} />
+
+          <Submit type="submit" value={"Submit"}></Submit>
         </form>
+        {/* <TestButton onClick={() => console.log("test styled btn")}>
+          Test button
+        </TestButton> */}
       </>
     );
   }

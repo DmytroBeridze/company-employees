@@ -14,6 +14,8 @@
   color: rgb(239, 191, 15);
   font-size: 20px;
   opacity: 0;
+  transform: translateX(30px);
+  transition: 0.3s;
 }
 .list-group-item {
   padding: 20px 30px;
@@ -36,4 +38,5 @@
 }
 .list-group-item.like .fa-star {
   opacity: 1;
+  transform: translateX(0);
 }
