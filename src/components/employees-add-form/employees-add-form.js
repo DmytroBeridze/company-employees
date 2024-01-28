@@ -1,5 +1,6 @@
 import React from "react";
-import "./employees-add-form.css";
+// import "./employees-add-form.css";
+import "./employees-add-form.scss";
 
 export default class EmployeesAddForm extends React.Component {
   constructor(props) {
@@ -8,10 +9,10 @@ export default class EmployeesAddForm extends React.Component {
       userName: "",
       userSalary: "",
     };
+    this.errorClass = "form-control";
   }
-
   handlerChange = (e) => {
-    const target = e.target;
+    // const target = e.target;
     // const userName = target.name;
     // const userSalary = target.value;
 
@@ -20,9 +21,20 @@ export default class EmployeesAddForm extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
   handlerSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+
+    if (this.state.userName.length < 3 || !this.state.userSalary) {
+      this.errorClass += " inputError";
+      return;
+    }
+    this.errorClass = "form-control";
+    this.props.addItem(this.state.userName, this.state.userSalary);
+    this.setState({
+      userName: "",
+      userSalary: "",
+    });
   };
 
   render() {
@@ -40,7 +52,8 @@ export default class EmployeesAddForm extends React.Component {
           </label>
           <input
             type="text"
-            className="form-control"
+            // className="form-control "
+            className={this.errorClass}
             id="employee-add-form-name"
             name="userName"
             placeholder="ПІБ"
@@ -54,7 +67,8 @@ export default class EmployeesAddForm extends React.Component {
           </label>
           <input
             type="text"
-            className="form-control"
+            // className="form-control"
+            className={this.errorClass}
             id="employee-add-form-salary"
             name="userSalary"
             placeholder="З/П в $"
@@ -63,7 +77,7 @@ export default class EmployeesAddForm extends React.Component {
           />
         </div>
         <div className="col-auto d-flex align-items-end">
-          <button type="submit" className="btn btn-outline-light ">
+          <button type="submit" className="btn btn-outline-light">
             Добавити
           </button>
         </div>

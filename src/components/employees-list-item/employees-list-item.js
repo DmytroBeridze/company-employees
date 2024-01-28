@@ -1,85 +1,74 @@
 import React from "react";
 import "./employees-list-item.css";
 
-class EmployeesListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // name: this.props.name,
-      // salary: this.props.salary,
-      ingrease: false,
-      like: false,
-    };
+function EmployeesListItem(props) {
+  const {
+    name,
+    salary,
+    ingrease,
+    like,
+    deleteElem,
+    toggleLike,
+    bonusLavel,
+    propsToggle,
+  } = props;
+
+  let textStyle =
+    "list-group-item d-flex justify-content-between align-items-center";
+  if (ingrease) {
+    textStyle += " ingrease";
   }
 
-  bonusLevel = () => {
-    this.setState(({ ingrease }) => ({
-      ingrease: !ingrease,
-    }));
-    // this.setState((prevState) => ({
-    //   ingrease: !prevState.ingrease,
-    // }));
-  };
+  if (like) {
+    textStyle += " like";
+  }
 
-  toggleLike = (e) => {
-    if (e.target.tagName === "LI" || e.target.tagName === "SPAN") {
-      this.setState(({ like }) => ({
-        like: !like,
-      }));
-    }
-  };
-  render() {
-    const { name, salary, deleteElem } = this.props;
-    const { ingrease, like } = this.state;
+  // let likeStyle =
+  //   "list-group-item d-flex justify-content-between align-items-center";
+  // if (like) {
+  //   likeStyle += " active";
+  // }
+  return (
+    <li className={textStyle}>
+      <span
+        className="list-group-item-label"
+        data-toggle="like"
+        onClick={propsToggle}
+        // onClick={toggleLike}
+      >
+        {name}
+      </span>
+      <input
+        type="text"
+        defaultValue={`$ ${salary}`}
+        className="list-group-item-input "
+      />
 
-    let textStyle =
-      "list-group-item d-flex justify-content-between align-items-center";
-    if (ingrease) {
-      textStyle += " ingrease";
-    }
-
-    if (like) {
-      textStyle += " like";
-    }
-
-    // let likeStyle =
-    //   "list-group-item d-flex justify-content-between align-items-center";
-    // if (like) {
-    //   likeStyle += " active";
-    // }
-    return (
-      <li className={textStyle} onClick={this.toggleLike}>
-        <span className="list-group-item-label">{name}</span>
-        <input
-          type="text"
-          defaultValue={`$ ${salary}`}
-          className="list-group-item-input "
-        />
-
-        <div
-          className=" m-0 d-flex align-items-center"
-          role="group"
-          aria-label="Basic mixed styles example"
+      <div
+        className=" m-0 d-flex align-items-center"
+        role="group"
+        aria-label="Basic mixed styles example"
+      >
+        <button
+          type="button"
+          className="btn btn-light me-2 testBtn"
+          data-toggle="ingrease"
+          onClick={propsToggle}
+          // onClick={bonusLavel}
         >
-          <button
-            type="button"
-            className="btn btn-light me-2 testBtn"
-            onClick={this.bonusLevel}
-          >
-            <i className="fa-solid fa-stroopwafel"></i>
-          </button>
-          <button
-            type="button"
-            className="btn btn-light me-2"
-            onClick={deleteElem}
-          >
-            <i className="fa-solid fa-trash"></i>
-          </button>
-          <i className=" fa-solid fa-star"></i>
-        </div>
-      </li>
-    );
-  }
+          <i className="fa-solid fa-stroopwafel"></i>
+        </button>
+        <button
+          type="button"
+          className="btn btn-light me-2"
+          onClick={deleteElem}
+        >
+          <i className="fa-solid fa-trash"></i>
+        </button>
+        <i className=" fa-solid fa-star"></i>
+      </div>
+    </li>
+  );
 }
 
 export default EmployeesListItem;
