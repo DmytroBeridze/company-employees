@@ -30,7 +30,7 @@ export default class EmployeesAddForm extends React.Component {
       return;
     }
     this.errorClass = "form-control";
-    
+
     this.props.addItem(this.state.userName, this.state.userSalary);
     this.setState({
       userName: "",
